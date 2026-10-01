@@ -1,0 +1,380 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #000000;
+  color: #ffffff;
+}
+
+/* Main */
+
+.app {
+  min-height: 100vh;
+  padding: 70px 20px;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(0, 255, 255, 0.18),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 85% 75%,
+      rgba(0, 180, 255, 0.14),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(0, 255, 255, 0.08),
+      transparent 35%
+    ),
+    #05080a;
+}
+
+.app::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(0, 255, 255, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 255, 255, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 45px 45px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    black,
+    transparent 90%
+  );
+
+  pointer-events: none;
+}
+
+/* Ambient cyan glow */
+
+.app::after {
+  content: "";
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  top: -250px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  background: rgba(0, 255, 255, 0.08);
+
+  filter: blur(100px);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+.todo-wrapper {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+
+.header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.subtitle {
+  color: #00ffff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 50px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 25px rgba(0, 255, 255, 0.35);
+}
+
+.description {
+  color: #777777;
+  font-size: 15px;
+}
+
+/* Input */
+
+.input-section {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.inputBox {
+  width: 100%;
+  height: 65px;
+  padding: 0 130px 0 22px;
+
+  background: #050505;
+  color: #ffffff;
+
+  border: 1px solid #1b3f3f;
+  border-radius: 12px;
+
+  outline: none;
+  font-size: 16px;
+
+  transition: 0.25s ease;
+}
+
+.inputBox::placeholder {
+  color: #555555;
+}
+
+.inputBox:focus {
+  border-color: #00ffff;
+  box-shadow:
+    0 0 0 2px rgba(0, 255, 255, 0.08),
+    0 0 25px rgba(0, 255, 255, 0.12);
+}
+
+.enter-text {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  color: #555555;
+  font-size: 11px;
+}
+
+/* Todo List */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Todo Card */
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+  min-height: 75px;
+  padding: 18px 20px;
+
+  background: #080808;
+
+  border: 1px solid #1a3333;
+  border-radius: 12px;
+
+  transition: all 0.25s ease;
+
+  animation: slideIn 0.3s ease;
+}
+
+.card:hover {
+  border-color: #00ffff;
+
+  box-shadow:
+    0 0 15px rgba(0, 255, 255, 0.08),
+    inset 0 0 15px rgba(0, 255, 255, 0.02);
+
+  transform: translateY(-2px);
+}
+
+.todo-text {
+  flex: 1;
+
+  color: #eeeeee;
+
+  font-size: 17px;
+  font-weight: 500;
+
+  word-break: break-word;
+}
+
+/* Buttons */
+
+.buttons,
+.edit-buttons {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.btn {
+  padding: 9px 16px;
+
+  border-radius: 7px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+/* Edit */
+
+.edit-btn {
+  background: transparent;
+  color: #00ffff;
+
+  border: 1px solid #00ffff;
+}
+
+.edit-btn:hover {
+  background: #00ffff;
+  color: #000000;
+
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.35);
+}
+
+/* Delete */
+
+.delete-btn {
+  background: transparent;
+  color: #ff4d67;
+  
+  border: 1px solid #ff4d67;
+}
+
+.delete-btn:hover {
+  background: #111111;
+  color: #ff0c30;
+
+  border-color: #fd1739;
+
+  box-shadow: 0 0 12px rgba(255, 77, 103, 0.2);
+}
+
+/* Save */
+
+.save-btn {
+  background: #00ffff;
+  color: #000000;
+
+  border: 1px solid #00ffff;
+}
+
+.save-btn:hover {
+  background: #000000;
+  color: #00ffff;
+
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.35);
+}
+
+/* Edit Input */
+
+.edit-input {
+  flex: 1;
+  min-width: 0;
+
+  height: 42px;
+  padding: 0 14px;
+
+  background: #000000;
+  color: #ffffff;
+
+  border: 1px solid #00ffff;
+  border-radius: 7px;
+
+  outline: none;
+
+  font-size: 15px;
+
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.08);
+}
+
+.edit-input:focus {
+  box-shadow:
+    0 0 0 2px rgba(0, 255, 255, 0.08),
+    0 0 15px rgba(0, 255, 255, 0.15);
+}
+
+/* Animation */
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .app {
+    padding: 45px 15px;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .inputBox {
+    height: 58px;
+    padding-right: 110px;
+  }
+
+  .card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .buttons {
+    width: 100%;
+  }
+
+  .btn {
+    flex: 1;
+  }
+
+  .edit-input {
+    width: 100%;
+  }
+
+  .edit-buttons {
+    width: 100%;
+  }
+
+  .save-btn {
+    width: 100%;
+  }
+}
+
